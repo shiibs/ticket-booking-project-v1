@@ -18,7 +18,7 @@ func (r *EventRepository) GetOne(ctx context.Context, eventId uint) (*models.Eve
 	return nil, nil
 }
 
-func (r *EventRepository) CreateOne(ctx context.Context, event models.Event) (*models.Event, error) {
+func (r *EventRepository) CreateOne(ctx context.Context, event *models.Event) (*models.Event, error) {
 	return nil, nil
 }
 

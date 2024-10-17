@@ -17,5 +17,5 @@ type Event struct {
 type EventRepository interface {
 	GetMany(ctx context.Context) ([]*Event, error)
 	GetOne(ctx context.Context, eventId uint) (*Event, error)
-	CreateOne(ctx context.Context, event Event) (*Event, error)
+	CreateOne(ctx context.Context, event *Event) (*Event, error)
 }
