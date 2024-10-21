@@ -28,10 +28,10 @@ func main() {
 	authRepository := repositories.NewAuthRepository(db)
 
 	authService := services.NewAuthService(authRepository)
-	handlers.NewAuthHandler(server.Group("/auth"), authService)
 
 	privateRoutes := server.Use(middlewares.AuthProtected(db))
 
+	handlers.NewAuthHandler(server.Group("/auth"), authService)
 	handlers.NewEventHandler(privateRoutes.Group("/event"), eventRepository)
 	handlers.NewTicketHandler(privateRoutes.Group("/ticket"), ticketRepository)
 
