@@ -10,7 +10,7 @@ export interface ShortcutProps {
   my?: number | "auto";
 
   p?: number;
-  pl: number;
+  pl?: number;
   pr?: number;
   pt?: number;
   pb?: number;
@@ -31,12 +31,11 @@ export const defaultShortcuts = (props: ShortcutProps) => ({
   paddingHorizontal: props.px,
 
   margin: props.m,
-  marginLeft: props.ml,
-  marginRight: props.mr,
-  marginTop: props.mt,
-  marginBottom: props.mb,
   marginVertical: props.my,
+  marginLeft: props.ml,
   marginHorizontal: props.mx,
+  marginBottom: props.mb,
+  marginTop: props.mt,
 
   width: props.w,
   height: props.h,
