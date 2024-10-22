@@ -21,17 +21,20 @@ func main() {
 		ServerHeader: "Fiber",
 	})
 
-	server := app.Group("/api")
-
+	// Repositories
 	eventRepository := repositories.NewEventRepository(db)
 	ticketRepository := repositories.NewTicketRepository(db)
 	authRepository := repositories.NewAuthRepository(db)
 
+	// Service
 	authService := services.NewAuthService(authRepository)
+
+	// Routing
+	server := app.Group("/api")
+	handlers.NewAuthHandler(server.Group("/auth"), authService)
 
 	privateRoutes := server.Use(middlewares.AuthProtected(db))
 
-	handlers.NewAuthHandler(server.Group("/auth"), authService)
 	handlers.NewEventHandler(privateRoutes.Group("/event"), eventRepository)
 	handlers.NewTicketHandler(privateRoutes.Group("/ticket"), ticketRepository)
 
