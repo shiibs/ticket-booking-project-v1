@@ -64,7 +64,7 @@ export default function EventScreen() {
   return (
     <VStack flex={1} p={20} pb={0} gap={20}>
       <VStack alignItems="center" justifyContent="space-between">
-        <Text fontSize={26} bold>
+        <Text fontSize={24} bold>
           {events.length} Events
         </Text>
       </VStack>
