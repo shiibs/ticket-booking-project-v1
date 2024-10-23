@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button";
+import DateTimePicker from "@/components/DateTimePicker";
 import { Input } from "@/components/Input";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Text } from "@/components/Text";
@@ -124,7 +125,10 @@ export default function EventDetailsScreen() {
         <Text ml={10} fontSize={14} color="gray">
           Date
         </Text>
-        {/* DateTimePicker */}
+        <DateTimePicker
+          onChange={(date) => updateField("date", date || new Date())}
+          currentDate={new Date(eventData?.date || new Date())}
+        />
       </VStack>
 
       <Button

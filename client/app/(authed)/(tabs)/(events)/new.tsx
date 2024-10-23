@@ -6,6 +6,7 @@ import { Alert } from "react-native";
 import { Text } from "@/components/Text";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
+import DateTimePicker from "@/components/DateTimePicker";
 
 export default function NewsEvent() {
   const navigation = useNavigation();
@@ -34,6 +35,10 @@ export default function NewsEvent() {
       headerTitleAlign: "center",
     });
   });
+
+  function onChangeDate(date?: Date) {
+    setDate(date || new Date());
+  }
 
   return (
     <VStack m={20} flex={1} gap={30}>
@@ -69,7 +74,7 @@ export default function NewsEvent() {
         <Text ml={10} fontSize={14} color="gray">
           Date
         </Text>
-        {/* DateTimePicker */}
+        <DateTimePicker onChange={onChangeDate} currentDate={date} />
       </VStack>
 
       <Button
