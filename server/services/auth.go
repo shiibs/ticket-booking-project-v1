@@ -56,12 +56,12 @@ func (s *AuthService) Register(ctx context.Context, registerData *models.AuthCre
 		return "", nil, fmt.Errorf("the user email is already in use")
 	}
 
-	hashPassword, err := bcrypt.GenerateFromPassword([]byte(registerData.Password), bcrypt.DefaultCost)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(registerData.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return "", nil, err
 	}
 
-	registerData.Password = string(hashPassword)
+	registerData.Password = string(hashedPassword)
 
 	user, err := s.repository.RegisterUser(ctx, registerData)
 	if err != nil {

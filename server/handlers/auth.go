@@ -23,7 +23,6 @@ func (h *AuthHandler) Login(ctx *fiber.Ctx) error {
 	defer cancel()
 
 	if err := ctx.BodyParser(&creds); err != nil {
-
 		return ctx.Status(fiber.StatusBadRequest).JSON(&fiber.Map{
 			"status":  "fail",
 			"message": err.Error(),
@@ -85,7 +84,7 @@ func (h *AuthHandler) Register(ctx *fiber.Ctx) error {
 		})
 	}
 
-	return ctx.Status(fiber.StatusOK).JSON(&fiber.Map{
+	return ctx.Status(fiber.StatusCreated).JSON(&fiber.Map{
 		"status":  "success",
 		"message": "Successfully registered",
 		"data": &fiber.Map{

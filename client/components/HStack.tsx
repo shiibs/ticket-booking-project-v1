@@ -1,3 +1,4 @@
+import React from "react";
 import { Stack, StackProps } from "@/components/Stack";
 
 interface HStackProps extends StackProps {}
