@@ -3,10 +3,10 @@ import { Text } from "@/components/Text";
 import { VStack } from "@/components/VStack";
 import { ticketService } from "@/services/tickets";
 import { Ticket } from "@/types/ticket";
-import { router, useFocusEffect, useNavigation } from "expo-router";
+import { useFocusEffect } from "@react-navigation/native";
+import { router, useNavigation } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { Alert, TouchableOpacity } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import { Alert, FlatList, TouchableOpacity } from "react-native";
 
 export default function TicketScreen() {
   const navigation = useNavigation();
@@ -41,15 +41,15 @@ export default function TicketScreen() {
       headerTitle: "Tickets",
       headerTitleAlign: "center",
     });
-  });
+  }, [navigation]);
 
   return (
-    <VStack flex={1} p={20} pb={0} gap={20}>
-      <HStack alignItems="center" justifyContent="space-between">
+    <VStack flex={1} p={26} pb={0} gap={20}>
+      <VStack alignItems="center" justifyContent="space-between">
         <Text fontSize={18} bold>
           {tickets.length} Tickets
         </Text>
-      </HStack>
+      </VStack>
 
       <FlatList
         keyExtractor={({ id }) => id.toString()}
@@ -70,7 +70,7 @@ export default function TicketScreen() {
               <HStack>
                 <VStack
                   h={120}
-                  w={"68%"}
+                  w={"69%"}
                   p={20}
                   justifyContent="space-between"
                   style={{
@@ -116,10 +116,10 @@ export default function TicketScreen() {
                   alignItems="center"
                   style={{
                     backgroundColor: "white",
-                    borderTopLeftRadius: 20,
-                    borderBottomLeftRadius: 20,
-                    borderTopRightRadius: 5,
-                    borderBottomRightRadius: 5,
+                    borderTopRightRadius: 20,
+                    borderBottomRightRadius: 20,
+                    borderTopLeftRadius: 5,
+                    borderBottomLeftRadius: 5,
                   }}
                 >
                   <Text fontSize={16} bold>

@@ -47,10 +47,10 @@ func (r *TicketRepository) CreateOne(ctx context.Context, userId uint, ticket *m
 	return r.GetOne(ctx, userId, ticket.ID)
 }
 
-func (r *TicketRepository) UpdateOne(ctx context.Context, userId uint, ticketId uint, updatedData map[string]interface{}) (*models.Ticket, error) {
+func (r *TicketRepository) UpdateOne(ctx context.Context, userId uint, ticketId uint, updateData map[string]interface{}) (*models.Ticket, error) {
 	ticket := &models.Ticket{}
 
-	updateRes := r.db.Model(ticket).Where("id = ?", ticketId).Updates(updatedData)
+	updateRes := r.db.Model(ticket).Where("id = ?", ticketId).Updates(updateData)
 
 	if updateRes.Error != nil {
 		return nil, updateRes.Error

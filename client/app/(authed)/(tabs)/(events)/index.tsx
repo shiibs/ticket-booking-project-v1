@@ -11,6 +11,7 @@ import { HStack } from "@/components/HStack";
 import { Text } from "@/components/Text";
 import { Divider } from "@/components/Divider";
 import { Button } from "@/components/Button";
+import { ticketService } from "@/services/tickets";
 
 export default function EventScreen() {
   const { user } = useAuth();
@@ -27,7 +28,7 @@ export default function EventScreen() {
 
   async function buyTicket(id: number) {
     try {
-      // await ticketService.createOne(id)
+      await ticketService.createOne(id);
       Alert.alert("Success", "Ticket purchased successfully");
       fetchEvents();
     } catch (error) {

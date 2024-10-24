@@ -22,6 +22,7 @@ func (h *TicketHandler) GetMany(ctx *fiber.Ctx) error {
 	userId := uint(ctx.Locals("userId").(float64))
 
 	tickets, err := h.repository.GetMany(context, userId)
+	fmt.Println(tickets)
 
 	if err != nil {
 		return ctx.Status(fiber.StatusBadRequest).JSON(&fiber.Map{
@@ -41,8 +42,8 @@ func (h *TicketHandler) GetOne(ctx *fiber.Ctx) error {
 	context, cancel := context.WithTimeout(context.Background(), time.Duration(5*time.Second))
 	defer cancel()
 
+	ticketId, _ := strconv.Atoi(ctx.Params("ticketId"))
 	userId := uint(ctx.Locals("userId").(float64))
-	ticketId, _ := strconv.Atoi("ticketId")
 
 	ticket, err := h.repository.GetOne(context, userId, uint(ticketId))
 
@@ -55,7 +56,7 @@ func (h *TicketHandler) GetOne(ctx *fiber.Ctx) error {
 
 	var QRCode []byte
 	QRCode, err = qrcode.Encode(
-		fmt.Sprintf("ticketId:%v, ownerId: %v", ticketId, userId),
+		fmt.Sprintf("ticketId:%v,ownerId:%v", ticketId, userId),
 		qrcode.Medium,
 		256,
 	)
@@ -81,8 +82,8 @@ func (h *TicketHandler) CreateOne(ctx *fiber.Ctx) error {
 	context, cancel := context.WithTimeout(context.Background(), time.Duration(5*time.Second))
 	defer cancel()
 
-	userId := uint(ctx.Locals("userId").(float64))
 	ticket := &models.Ticket{}
+	userId := uint(ctx.Locals("userId").(float64))
 
 	if err := ctx.BodyParser(ticket); err != nil {
 		return ctx.Status(fiber.StatusUnprocessableEntity).JSON(&fiber.Map{

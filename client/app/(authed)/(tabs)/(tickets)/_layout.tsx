@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 
-export default function TicketLayout() {
+export default function TicketsLayout() {
   return (
     <Stack screenOptions={{ headerBackTitle: "Tickets" }}>
       <Stack.Screen name="index" />
